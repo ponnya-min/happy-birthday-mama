@@ -234,6 +234,35 @@
     letter-spacing: 0.05em;
   }
 
+  .pw-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .pw-wrap input {
+    padding-right: 46px;
+    width: 100%;
+  }
+
+  .pw-toggle {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: #c8a0a8;
+    transition: color 0.2s, transform 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  .pw-toggle:hover { color: var(--rose); transform: scale(1.1); }
+  .pw-toggle svg { width: 18px; height: 18px; pointer-events: none; }
+
   /* ---- Birthday page ---- */
   #birthday {
     background: radial-gradient(ellipse at 50% 30%, #fce4ec 0%, #fdf6f0 70%);
@@ -552,11 +581,26 @@
     </div>
     <div class="field">
       <label>PASSWORD</label>
-      <input type="password" id="password" placeholder="••••••••">
+      <div class="pw-wrap">
+        <input type="password" id="password" placeholder="••••••••">
+        <button class="pw-toggle" type="button" onclick="togglePassword()" id="pwToggle" title="Show / hide password">
+          <!-- Eye icon -->
+          <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <!-- Eye-off icon (hidden by default) -->
+          <svg id="eyeOffIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+            <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+            <line x1="1" y1="1" x2="23" y2="23"/>
+          </svg>
+        </button>
+      </div>
     </div>
     <p class="error-msg" id="error"></p>
     <button class="btn-login" onclick="tryLogin()">Enter &nbsp;→</button>
-    <p class="hint">hint: password is "Our anniversary: 00/00/0000"</p>
+    <p class="hint">hint: password is "Our Anniversary" example 01012026</p>
   </div>
 </div>
 
@@ -692,6 +736,24 @@
 </div>
 
 <script>
+  /* ================================================
+     PASSWORD TOGGLE
+  ================================================ */
+  function togglePassword() {
+    const pw = document.getElementById('password');
+    const eyeOn = document.getElementById('eyeIcon');
+    const eyeOff = document.getElementById('eyeOffIcon');
+    if (pw.type === 'password') {
+      pw.type = 'text';
+      eyeOn.style.display = 'none';
+      eyeOff.style.display = 'block';
+    } else {
+      pw.type = 'password';
+      eyeOn.style.display = 'block';
+      eyeOff.style.display = 'none';
+    }
+  }
+
   /* ================================================
      ANIMATION ENGINE
   ================================================ */
