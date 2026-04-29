@@ -556,7 +556,7 @@
     </div>
     <p class="error-msg" id="error"></p>
     <button class="btn-login" onclick="tryLogin()">Enter &nbsp;→</button>
-    <p class="hint">hint: password is "forever"</p>
+    <p class="hint">hint: password is "Our anniversary"</p>
   </div>
 </div>
 
@@ -884,7 +884,7 @@
     const p = document.getElementById('password').value.trim();
     const err = document.getElementById('error');
     if (!u) { err.textContent = 'Please enter your name 🌸'; return; }
-    if (p.toLowerCase() !== 'forever') {
+    if (p.toLowerCase() !== '21042026') {
       err.textContent = 'Incorrect password — check the hint!';
       const pw = document.getElementById('password');
       pw.style.borderColor = '#e07070';
